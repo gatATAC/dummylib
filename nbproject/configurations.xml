@@ -8,7 +8,6 @@
       <itemPath>Arduino.h</itemPath>
       <itemPath>DummyFunctions.h</itemPath>
       <itemPath>DummyTypes.h</itemPath>
-      <itemPath>Serial.h</itemPath>
       <itemPath>SerialClass.h</itemPath>
       <itemPath>TM1638.h</itemPath>
     </logicalFolder>
@@ -63,8 +62,6 @@
       </item>
       <item path="DummyTypes.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Serial.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="SerialClass.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TM1638.h" ex="false" tool="3" flavor2="0">
@@ -107,8 +104,6 @@
       <item path="DummyFunctions.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DummyTypes.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Serial.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SerialClass.h" ex="false" tool="3" flavor2="0">
       </item>
