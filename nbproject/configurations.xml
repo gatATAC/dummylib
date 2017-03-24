@@ -9,6 +9,7 @@
       <itemPath>DummyFunctions.h</itemPath>
       <itemPath>DummyTypes.h</itemPath>
       <itemPath>SerialClass.h</itemPath>
+      <itemPath>Servo.h</itemPath>
       <itemPath>TM1638.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -34,7 +35,7 @@
   </logicalFolder>
   <projectmakefile>nb-Makefile</projectmakefile>
   <confs>
-    <conf name="Debug" type="1">
+    <conf name="Debug" type="3">
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
@@ -46,13 +47,21 @@
             <pElem>../dummylib</pElem>
             <pElem>../libraries/gatArduinOSEK</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>DUMMY_COMPILATION</Elem>
+          </preprocessorList>
         </cTool>
         <ccTool>
           <incDir>
             <pElem>../dummylib</pElem>
             <pElem>../libraries/gatArduinOSEK</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>DUMMY_COMPILATION</Elem>
+          </preprocessorList>
         </ccTool>
+        <archiverTool>
+        </archiverTool>
       </compileType>
       <item path="AccelStepper.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -64,12 +73,14 @@
       </item>
       <item path="SerialClass.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Servo.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="TM1638.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
-    <conf name="Release" type="1">
+    <conf name="Release" type="3">
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
@@ -96,6 +107,8 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <archiverTool>
+        </archiverTool>
       </compileType>
       <item path="AccelStepper.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -106,6 +119,8 @@
       <item path="DummyTypes.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SerialClass.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Servo.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TM1638.h" ex="false" tool="3" flavor2="0">
       </item>
