@@ -9,4 +9,5 @@ void analogWrite(uint8_t pin, uint16_t value);
 void digitalWrite(uint8_t pin, bool value);
 uint16_t analogRead(uint8_t pin);
 
+using namespace std;
 #endif // _DUMMY_FUNCTIONS

@@ -35,6 +35,8 @@ class Serial
         //Check if we are actually connected
         bool IsConnected();
         void println(const char *buff);
+        void println(short int);
+        void print(const char *buff);
         void printf(const char *buff, long int&);
         
         begin(int bauds);
