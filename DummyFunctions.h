@@ -13,15 +13,6 @@ uint16_t analogRead(uint8_t pin);
 void delay(uint32_t waiting_time);
 unsigned long millis(void);
 int bitRead(int x, int n);
-/*
-float sqrt(float);
-float atan2(float,float);
-float asin(float);
-float fabs(float);
-float sin(float);
-float cos(float);
-float atan(float);
 
-float copysign(float,float);*/
-        
+using namespace std;
 #endif // _DUMMY_FUNCTIONS
