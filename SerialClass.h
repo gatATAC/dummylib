@@ -44,9 +44,8 @@ class Serial
         void println(int i);
         void print(void *);
         void println(void *);
-        void println(short int);
         void printf(const char *buff, long int&);
-        void begin(unsigned int);
+        void begin(int);
 #ifndef DUMMY_COMPILATION        
         begin(int bauds);
 #endif
