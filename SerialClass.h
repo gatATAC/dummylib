@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef void FlashStringHelper;
+
 class Serial
 {
     private:
@@ -35,10 +37,18 @@ class Serial
         //Check if we are actually connected
         bool IsConnected();
         void println(const char *buff);
+        void println(const FlashStringHelper *buff);
+        void print(const FlashStringHelper *buff);
+        void print(const char *buff);
+        void print(int i);
+        void println(int i);
+        void print(void *);
+        void println(void *);
         void printf(const char *buff, long int&);
-        
+        void begin(unsigned int);
+#ifndef DUMMY_COMPILATION        
         begin(int bauds);
-
+#endif
 
 };
 
