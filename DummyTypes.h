@@ -12,6 +12,7 @@ typedef uint16_t UI_10;
 typedef uint8_t byte;
 typedef uint8_t boolean;
 typedef short word;
+typedef uint8_t byte;
 
 #ifndef HIGH 
 #define HIGH 1

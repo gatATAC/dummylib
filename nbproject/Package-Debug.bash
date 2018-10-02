@@ -6,11 +6,19 @@
 
 # Macros
 TOP=`pwd`
+<<<<<<< HEAD
 CND_PLATFORM=GNU-MacOSX
 CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 CND_DLIB_EXT=dylib
+=======
+CND_PLATFORM=GNU-Linux-x86
+CND_CONF=Debug
+CND_DISTDIR=dist
+CND_BUILDDIR=build
+CND_DLIB_EXT=so
+>>>>>>> 6c732210d5987a4bccf1da57a315d7efe9cefa9e
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
 OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libdummylib.a

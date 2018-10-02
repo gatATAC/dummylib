@@ -21,8 +21,13 @@ FC=gfortran
 AS=as
 
 # Macros
+<<<<<<< HEAD
 CND_PLATFORM=GNU-MacOSX
 CND_DLIB_EXT=dylib
+=======
+CND_PLATFORM=GNU-Linux-x86
+CND_DLIB_EXT=so
+>>>>>>> 6c732210d5987a4bccf1da57a315d7efe9cefa9e
 CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
