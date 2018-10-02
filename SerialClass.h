@@ -37,9 +37,10 @@ class Serial
         void println(const char *buff);
         void println(short int);
         void print(const char *buff);
+        void print(short int);
         void printf(const char *buff, long int&);
         
-        begin(int bauds);
+        void begin(int bauds);
 
 
 };
