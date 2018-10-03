@@ -6,15 +6,15 @@
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are met:
 
-   * Redistributions of source code must retain the above copyright
+ * Redistributions of source code must retain the above copyright
      notice, this list of conditions and the following disclaimer.
 
-   * Redistributions in binary form must reproduce the above copyright
+ * Redistributions in binary form must reproduce the above copyright
      notice, this list of conditions and the following disclaimer in
      the documentation and/or other materials provided with the
      distribution.
 
-   * Neither the name of the copyright holders nor the names of
+ * Neither the name of the copyright holders nor the names of
      contributors may be used to endorse or promote products derived
      from this software without specific prior written permission.
 
@@ -45,7 +45,7 @@
 /** 
 \file 
 \@{ 
-*/
+ */
 
 
 /** \name Global manipulation of the interrupt flag
@@ -61,7 +61,7 @@
     order to perform certain operations without being disturbed; see
     \ref optim_code_reorder for things to be taken into account with
     respect to compiler optimizations.
-*/
+ */
 
 #if defined(__DOXYGEN__)
 /** \def sei()
@@ -75,10 +75,10 @@
     In order to implement atomic access to multi-byte objects,
     consider using the macros from <util/atomic.h>, rather than
     implementing them manually with cli() and sei().
-*/
+ */
 #define sei()
 #else  /* !DOXYGEN */
-# define sei()  __asm__ __volatile__ ("sei" ::: "memory")
+#define sei()  __asm__ __volatile__ ("sei" ::: "memory")
 #endif /* DOXYGEN */
 
 #if defined(__DOXYGEN__)
@@ -93,10 +93,10 @@
     In order to implement atomic access to multi-byte objects,
     consider using the macros from <util/atomic.h>, rather than
     implementing them manually with cli() and sei().
-*/
+ */
 #define cli()
 #else  /* !DOXYGEN */
-# define cli()  __asm__ __volatile__ ("cli" ::: "memory")
+#define cli()  __asm__ __volatile__ ("cli" ::: "memory")
 #endif /* DOXYGEN */
 
 
@@ -121,22 +121,22 @@
 
     \c vector must be one of the interrupt vector names that are
     valid for the particular MCU type.
-*/
-#  define ISR(vector, [attributes])
+ */
+#define ISR(vector, [attributes])
 #else  /* real code */
 
 #if (__GNUC__ == 4 && __GNUC_MINOR__ >= 1) || (__GNUC__ > 4)
-#  define __INTR_ATTRS used, externally_visible
+#define __INTR_ATTRS used, externally_visible
 #else /* GCC < 4.1 */
-#  define __INTR_ATTRS used
+#define __INTR_ATTRS used
 #endif
 
 #ifdef __cplusplus
-#  define ISR(vector, ...)            \
+#define ISR(vector, ...)            \
     extern "C" void vector (void) __attribute__ ((signal,__INTR_ATTRS)) __VA_ARGS__; \
     void vector (void)
 #else
-#  define ISR(vector, ...)            \
+#define ISR(vector, ...)            \
     void vector (void) __attribute__ ((signal,__INTR_ATTRS)) __VA_ARGS__; \
     void vector (void)
 #endif
@@ -152,17 +152,17 @@
 
     This is the same as the ISR macro without optional attributes.
     \deprecated Do not use SIGNAL() in new code. Use ISR() instead.
-*/
-#  define SIGNAL(vector)
+ */
+#define SIGNAL(vector)
 #else  /* real code */
 
 #ifdef __cplusplus
-#  define SIGNAL(vector)					\
-    extern "C" void vector(void) __attribute__ ((signal, __INTR_ATTRS));	\
+#define SIGNAL(vector)     \
+    extern "C" void vector(void) __attribute__ ((signal, __INTR_ATTRS)); \
     void vector (void)
 #else
-#  define SIGNAL(vector)					\
-    void vector (void) __attribute__ ((signal, __INTR_ATTRS));		\
+#define SIGNAL(vector)     \
+    void vector (void) __attribute__ ((signal, __INTR_ATTRS));  \
     void vector (void)
 #endif
 
@@ -177,15 +177,15 @@
     define a function body as this will define it for you.
     Example:
     \code EMPTY_INTERRUPT(ADC_vect);\endcode */
-#  define EMPTY_INTERRUPT(vector)
+#define EMPTY_INTERRUPT(vector)
 #else  /* real code */
 
 #ifdef __cplusplus
-#  define EMPTY_INTERRUPT(vector)                \
+#define EMPTY_INTERRUPT(vector)                \
     extern "C" void vector(void) __attribute__ ((signal,naked,__INTR_ATTRS));    \
     void vector (void) {  __asm__ __volatile__ ("reti" ::); }
 #else
-#  define EMPTY_INTERRUPT(vector)                \
+#define EMPTY_INTERRUPT(vector)                \
     void vector (void) __attribute__ ((signal,naked,__INTR_ATTRS));    \
     void vector (void) { __asm__ __volatile__ ("reti" ::); }
 #endif
@@ -220,31 +220,31 @@
     ISR_ALIAS(INT1_vect, INT0_vect);
     \endcode 
     
-*/
-#  define ISR_ALIAS(vector, target_vector)
+ */
+#define ISR_ALIAS(vector, target_vector)
 #else /* real code */
 
 #ifdef __cplusplus
-#  if defined(__AVR_MEGA__) && __AVR_MEGA__
-#    define ISR_ALIAS(vector, tgt) extern "C" void vector (void) \
-	__attribute__((signal, naked, __INTR_ATTRS)); \
-	void vector (void) { asm volatile ("jmp " __STRINGIFY(tgt) ::); }
-#  else /* !__AVR_MEGA */
-#    define ISR_ALIAS(vector, tgt) extern "C" void vector (void) \
-	__attribute__((signal, naked, __INTR_ATTRS)); \
-	void vector (void) { asm volatile ("rjmp " __STRINGIFY(tgt) ::); }
-#  endif  /* __AVR_MEGA__ */
-#else	  /* !__cplusplus */
-#  if defined(__AVR_MEGA__) && __AVR_MEGA__
-#  define ISR_ALIAS(vector, tgt) void vector (void) \
-	__attribute__((signal, naked, __INTR_ATTRS)); \
-	void vector (void) { asm volatile ("jmp " __STRINGIFY(tgt) ::); }
-#  else /* !__AVR_MEGA */
-#  define ISR_ALIAS(vector, tgt) void vector (void) \
-	__attribute__((signal, naked, __INTR_ATTRS)); \
-	void vector (void) { asm volatile ("rjmp " __STRINGIFY(tgt) ::); }
-#  endif  /* __AVR_MEGA__ */
-#endif	/* __cplusplus */
+#if defined(__AVR_MEGA__) && __AVR_MEGA__
+#define ISR_ALIAS(vector, tgt) extern "C" void vector (void) \
+        __attribute__((signal, naked, __INTR_ATTRS)); \
+        void vector (void) { asm volatile ("jmp " __STRINGIFY(tgt) ::); }
+#else /* !__AVR_MEGA */
+#define ISR_ALIAS(vector, tgt) extern "C" void vector (void) \
+        __attribute__((signal, naked, __INTR_ATTRS)); \
+        void vector (void) { asm volatile ("rjmp " __STRINGIFY(tgt) ::); }
+#endif  /* __AVR_MEGA__ */
+#else   /* !__cplusplus */
+#if defined(__AVR_MEGA__) && __AVR_MEGA__
+#define ISR_ALIAS(vector, tgt) void vector (void) \
+        __attribute__((signal, naked, __INTR_ATTRS)); \
+        void vector (void) { asm volatile ("jmp " __STRINGIFY(tgt) ::); }
+#else /* !__AVR_MEGA */
+#define ISR_ALIAS(vector, tgt) void vector (void) \
+        __attribute__((signal, naked, __INTR_ATTRS)); \
+        void vector (void) { asm volatile ("rjmp " __STRINGIFY(tgt) ::); }
+#endif  /* __AVR_MEGA__ */
+#endif /* __cplusplus */
 
 #endif /* DOXYGEN */
 
@@ -258,10 +258,10 @@
 
     This macro actually compiles into a single line of assembly, so there is
     no function call overhead.
-*/
-#  define reti()
+ */
+#define reti()
 #else  /* !DOXYGEN */
-#  define reti()  __asm__ __volatile__ ("reti" ::)
+#define reti()  __asm__ __volatile__ ("reti" ::)
 #endif /* DOXYGEN */
 
 #if defined(__DOXYGEN__)
@@ -274,10 +274,10 @@
     executed when an ISR fires with no accompanying ISR handler. This
     may be used along with the ISR() macro to create a catch-all for
     undefined but used ISRs for debugging purposes.
-*/
-#  define BADISR_vect
+ */
+#define BADISR_vect
 #else  /* !DOXYGEN */
-#  define BADISR_vect __vector_default
+#define BADISR_vect __vector_default
 #endif /* DOXYGEN */
 
 /** \name ISR attributes */
@@ -291,8 +291,8 @@
     entering the ISR, without the compiler modifying this state.
 
     Use this attribute in the attributes parameter of the ISR macro.
-*/
-#  define ISR_BLOCK
+ */
+#define ISR_BLOCK
 
 /** \def ISR_NOBLOCK
     \ingroup avr_interrupts
@@ -308,8 +308,8 @@
     respective interrupt flag before entering the ISR.
 
     Use this attribute in the attributes parameter of the ISR macro.
-*/
-#  define ISR_NOBLOCK
+ */
+#define ISR_NOBLOCK
 
 /** \def ISR_NAKED
     \ingroup avr_interrupts
@@ -320,8 +320,8 @@
     interrupt routine.
 
     Use this attribute in the attributes parameter of the ISR macro.
-*/
-#  define ISR_NAKED
+ */
+#define ISR_NAKED
 
 /** \def ISR_ALIASOF(target_vector)
     \ingroup avr_interrupts
@@ -330,13 +330,13 @@
     This is compatible with GCC 4.2 and greater only.
 
     Use this attribute in the attributes parameter of the ISR macro.
-*/
-#  define ISR_ALIASOF(target_vector)
+ */
+#define ISR_ALIASOF(target_vector)
 #else  /* !DOXYGEN */
-#  define ISR_BLOCK
-#  define ISR_NOBLOCK    __attribute__((interrupt))
-#  define ISR_NAKED      __attribute__((naked))
-#  define ISR_ALIASOF(v) __attribute__((alias(__STRINGIFY(v))))
+#define ISR_BLOCK
+#define ISR_NOBLOCK    __attribute__((interrupt))
+#define ISR_NAKED      __attribute__((naked))
+#define ISR_ALIASOF(v) __attribute__((alias(__STRINGIFY(v))))
 #endif /* DOXYGEN */
 
 /* \@} */

@@ -23,19 +23,18 @@
 #define PCF857x_PIN_ERROR   0x81
 #define PCF857x_I2C_ERROR   0x82
 
-class PCF857x
-{
-  public:
+class PCF857x {
+public:
     // Defaults to 8574, set is8575 to true if you have a 8575 instead.
-    #if defined (ARDUINO_AVR_DIGISPARK) || defined (ARDUINO_AVR_ATTINYX5)
+#if defined (ARDUINO_AVR_DIGISPARK) || defined (ARDUINO_AVR_ATTINYX5)
     PCF857x(uint8_t address, bool is8575 = false);
-    #elif defined (__STM32F1__)
+#elif defined (__STM32F1__)
     PCF857x(uint8_t address, HardWire *Wire, bool is8575 = false);
-    #else
+#else
     PCF857x(uint8_t address, TwoWire *UseWire, bool is8575 = false);
-    #endif
+#endif
 
-    void begin(uint16_t defaultValues=0xffff);
+    void begin(uint16_t defaultValues = 0xffff);
     uint8_t read8();
     uint16_t read16();
     uint8_t read(uint8_t pin);
@@ -46,27 +45,27 @@ class PCF857x
 
     void toggle(uint8_t pin);
     void toggleAll();
-    void shiftRight(uint8_t n=1);
-    void shiftLeft(uint8_t n=1);
-    void rotateRight(uint8_t n=1);
-    void rotateLeft(uint8_t n=1);
+    void shiftRight(uint8_t n = 1);
+    void shiftLeft(uint8_t n = 1);
+    void rotateRight(uint8_t n = 1);
+    void rotateLeft(uint8_t n = 1);
     void resetInterruptPin();
 
     int lastError();
 
-  protected:
+protected:
     uint16_t _data;
     uint16_t _pinModeMask;
     bool _is8575;
 
-  private:
-    #if defined (ARDUINO_AVR_DIGISPARK) || defined (ARDUINO_AVR_ATTINYX5)
+private:
+#if defined (ARDUINO_AVR_DIGISPARK) || defined (ARDUINO_AVR_ATTINYX5)
     USI_TWI *_Wire;
-    #elif defined (__STM32F1__)
+#elif defined (__STM32F1__)
     HardWire *_Wire;
-    #else
+#else
     TwoWire *_Wire;
-    #endif
+#endif
     uint8_t _address;
     int _error;
 };

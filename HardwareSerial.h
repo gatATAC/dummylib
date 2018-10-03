@@ -66,22 +66,22 @@ enum SerialMode {
     SERIAL_TX_ONLY
 };
 
-class HardwareSerial: public Stream
-{
+class HardwareSerial : public Stream {
 public:
     HardwareSerial(int uart_nr);
-    virtual ~HardwareSerial() {}
 
-    void begin(unsigned long baud)
-    {
+    virtual ~HardwareSerial() {
+    }
+
+    void begin(unsigned long baud) {
         begin(baud, SERIAL_8N1, SERIAL_FULL, 1);
     }
-    void begin(unsigned long baud, SerialConfig config)
-    {
+
+    void begin(unsigned long baud, SerialConfig config) {
         begin(baud, config, SERIAL_FULL, 1);
     }
-    void begin(unsigned long baud, SerialConfig config, SerialMode mode)
-    {
+
+    void begin(unsigned long baud, SerialConfig config, SerialMode mode) {
         begin(baud, config, mode, 1);
     }
 
@@ -91,11 +91,11 @@ public:
 
     size_t setRxBufferSize(size_t size);
 
-    void swap()
-    {
+    void swap() {
         swap(1);
     }
-    void swap(uint8_t tx_pin)    //toggle between use of GPIO13/GPIO15 or GPIO3/GPIO(1/2) as RX and TX
+
+    void swap(uint8_t tx_pin) //toggle between use of GPIO13/GPIO15 or GPIO3/GPIO(1/2) as RX and TX
     {
     }
 
@@ -103,74 +103,70 @@ public:
      * Toggle between use of GPIO1 and GPIO2 as TX on UART 0.
      * Note: UART 1 can't be used if GPIO2 is used with UART 0!
      */
-    void set_tx(uint8_t tx_pin)
-    {
+    void set_tx(uint8_t tx_pin) {
     }
 
     /*
      * UART 0 possible options are (1, 3), (2, 3) or (15, 13)
      * UART 1 allows only TX on 2 if UART 0 is not (2, 3)
      */
-    void pins(uint8_t tx, uint8_t rx)
-    {
+    void pins(uint8_t tx, uint8_t rx) {
     }
 
     int available(void) override;
 
-    int peek(void) override
-    {
+    int peek(void) override {
         // this may return -1, but that's okay
     }
-    int read(void) override
-    {
+
+    int read(void) override {
         // this may return -1, but that's okay
     }
-    int availableForWrite(void)
-    {
+
+    int availableForWrite(void) {
     }
     void flush(void) override;
-    size_t write(uint8_t c) override
-    {
+
+    size_t write(uint8_t c) override {
     }
-    inline size_t write(unsigned long n)
-    {
+
+    inline size_t write(unsigned long n) {
         return write((uint8_t) n);
     }
-    inline size_t write(long n)
-    {
+
+    inline size_t write(long n) {
         return write((uint8_t) n);
     }
-    inline size_t write(unsigned int n)
-    {
+
+    inline size_t write(unsigned int n) {
         return write((uint8_t) n);
     }
-    inline size_t write(int n)
-    {
+
+    inline size_t write(int n) {
         return write((uint8_t) n);
     }
-    size_t write(const uint8_t *buffer, size_t size)
-    {
+
+    size_t write(const uint8_t *buffer, size_t size) {
     }
-    size_t write(const char *buffer)
-    {
+
+    size_t write(const char *buffer) {
     }
-    operator bool() const
-    {
+
+    operator bool() const {
         return _uart != 0;
     }
     void setDebugOutput(bool);
-    bool isTxEnabled(void)
-    {
-    }
-    bool isRxEnabled(void)
-    {
-    }
-    int baudRate(void)
-    {
+
+    bool isTxEnabled(void) {
     }
 
-    bool hasOverrun(void)
-    {
+    bool isRxEnabled(void) {
+    }
+
+    int baudRate(void) {
+    }
+
+    bool hasOverrun(void) {
     }
 
 protected:

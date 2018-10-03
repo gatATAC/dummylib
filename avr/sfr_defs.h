@@ -4,15 +4,15 @@
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are met:
 
-   * Redistributions of source code must retain the above copyright
+ * Redistributions of source code must retain the above copyright
      notice, this list of conditions and the following disclaimer.
 
-   * Redistributions in binary form must reproduce the above copyright
+ * Redistributions in binary form must reproduce the above copyright
      notice, this list of conditions and the following disclaimer in
      the documentation and/or other materials provided with the
      distribution.
 
-   * Neither the name of the copyright holders nor the names of
+ * Neither the name of the copyright holders nor the names of
      contributors may be used to endorse or promote products derived
      from this software without specific prior written permission.
 
@@ -87,9 +87,9 @@
 
 \code
 #if _SFR_IO_REG_P(SPMCR)
-	out	_SFR_IO_ADDR(SPMCR), r24
+        out	_SFR_IO_ADDR(SPMCR), r24
 #else
-	sts	_SFR_MEM_ADDR(SPMCR), r24
+        sts	_SFR_MEM_ADDR(SPMCR), r24
 #endif
 \endcode
 
@@ -107,7 +107,7 @@
    (defined only if <tt>__SFR_OFFSET</tt> == 0x20) for safety:
 
 \code
-	sts	_SFR_ADDR(SPMCR), r24
+        sts	_SFR_ADDR(SPMCR), r24
 \endcode
 
    In C programs, all 3 combinations of \c _SFR_ASM_COMPAT and
@@ -135,11 +135,11 @@
 #ifndef __SFR_OFFSET
 /* Define as 0 before including this file for compatibility with old asm
    sources that don't subtract __SFR_OFFSET from symbolic I/O addresses.  */
-#  if __AVR_ARCH__ >= 100
-#    define __SFR_OFFSET 0x00
-#  else
-#    define __SFR_OFFSET 0x20
-#  endif
+#if __AVR_ARCH__ >= 100
+#define __SFR_OFFSET 0x00
+#else
+#define __SFR_OFFSET 0x20
+#endif
 #endif
 
 #if (__SFR_OFFSET != 0) && (__SFR_OFFSET != 0x20)
@@ -166,11 +166,11 @@
 #else  /* !_SFR_ASM_COMPAT */
 
 #ifndef __SFR_OFFSET
-#  if __AVR_ARCH__ >= 100
-#    define __SFR_OFFSET 0x00
-#  else
-#    define __SFR_OFFSET 0x20
-#  endif
+#if __AVR_ARCH__ >= 100
+#define __SFR_OFFSET 0x00
+#else
+#define __SFR_OFFSET 0x20
+#endif
 #endif
 
 #define _SFR_MEM8(mem_addr) _MMIO_BYTE(mem_addr)
@@ -204,7 +204,7 @@
     \note The bit shift is performed by the compiler which then inserts the
     result into the code. Thus, there is no run-time overhead when using
     _BV(). */
-    
+
 #define _BV(bit) (1 << (bit))
 
 /*@}*/
